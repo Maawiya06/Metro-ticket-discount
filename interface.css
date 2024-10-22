@@ -1,0 +1,42 @@
+.logo-image{
+  width: 150px;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.font1 {
+  background-color: white;
+  color: black; 
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px 0; 
+}
+
+.font2 {
+  background-color: white;
+  color: black; 
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px 0; 
+}
+
+.click-me {
+  padding: 12px 20px; 
+  border-radius: 10px;
+  background-color: #FFB6C1; 
+  color: #000000; 
+  font-size: 16px;
+  border: none; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease; 
+}
+
+.click-me:hover {
+  background-color: #009ACD; 
+}
+
+.footer-image{
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 10px;
+}
