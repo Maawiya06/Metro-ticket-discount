@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Female Age input</title>
+  <link rel="stylesheet" href="femaleageinput.css">
+</head>
+<body>
+  <div class="container">
+    <h1>MA'AM PLEASE ENTER YOU'R PRESENT AGE</h1>
+    <input type="number" id="age" placeholder="Enter your Age" min="1" max="120"><br><br>
+
+    <p1 class="route">JANAKPURI WEST  --> BOTANICAL GUARDEN</p1><br>
+  
+    <!-- left - section  -->
+    <div class="left-section">
+      <h2>select Source</h2>
+      <h3>YOUR CURRENT STATION</h3>
+      <select id="source" onchange="updateDestinations()">
+        <option value="">STATION ON THIS ROUTE</option>
+        <option value="00">JANAKPURI WEST</option>
+        <option value="10">DABRI MOR-JANAKPURI SOUTH</option>
+        <option value="10">DASHRATPURI</option>
+        <option value="20">PALAM</option>
+        <option value="20">SADAR BAZAR CANTONMENT</option>
+        <option value="30">TERMINAL 1-IGI AIRPORT</option>
+        <option value="30">SANKAR VIHAR</option>
+        <option value="32">VASANT VIHAR</option>
+        <option value="32">MUNIRKA</option>
+        <option value="36">R.K.PURAM</option>
+        <option value="36">IIT</option>
+        <option value="38">HAUZ KHAS</option>
+        <option value="38">PANCHSHEEL PARK</option>
+        <option value="38">CHIRAG DELHI</option>
+        <option value="40">GREATER KAILASH</option>
+        <option value="40">NEHRU ENCLAVE</option>
+        <option value="42">KALKAJI MANDIR</option>
+        <option value="42">OKHLA NSIC</option>
+        <option value="44">SUKHDEV VIHAR</option>
+        <option value="44">JAMIA MILLAI ISLAMIA</option>
+        <option value="46">OKHLA VIAHR</option>
+        <option value="46">JASOLA VIHAR SHAHEEN BAGH</option>
+        <option value="48">KALINDI KUNJ</option>
+        <option value="48">OKHLA BIRD SANTUARY</option>
+        <option value="50">BOTANICAL GARDEN</option>
+      </select>
+      </div>
+  
+
+       <!-- right section  -->
+    <div class="right-section">
+      <h2>Select destination</h2>
+      <h3>YOUR DESTINATIONS ARE.....</h3>
+      <select id="destination">
+        <option value="">DESTINATION ON THIS ROUTE</option>
+      </select><br><br><br>
+      </div>
+
+    <div class="bottom-center">
+    <button onclick="calculatePrice()">submit</button>
+    </div>
+
+    <div id = "message"></div>
+  </div>
+  
+
+  <script>
+    const destinations = {
+
+"JANAKPURI WEST" : {"DABRI MOR-JANAKPURI SOUTH" : 10, "DASHRATPURI" : 10, "PALAM" : 20, "SADAR BAZAR CANTONMENT" : 20, "TERMINAL 1-IGI AIRPORT" : 30, "SANKAR VIHAR" : 30, "VASANT VIHAR" : 32, "MUNIRKA" : 32, "R.K.PURAM" : 36, "IIT" : 36, "HAUZ KHAS" : 38, "PANCHSHEEL PARK" : 38, "CHIRAG DELHI" : 38, "GREATER KAILASH" : 40, "NEHRU ENCLAVE" : 40, "KALKAJI MANDIR" : 42, "OKHLA NSIC" : 42, "SUKHDEV VIHAR" : 44, "JAMIA MILLAI ISLAMIA" : 44, "OKHLA VIAHR" : 46, "JASOLA VIHAR SHAHEEN BAGH" : 46, "KALINDI KUNJ" : 48, "OKHLA BIRD SANTUARY" : 48, "BOTANICAL GARDEN" : 50},
+
+"DABRI MOR-JANAKPURI SOUTH" : {"DASHRATPURI" : 12, "PALAM" : 20, "SADAR BAZAR CANTONMENT" : 20, "TERMINAL 1-IGI AIRPORT" : 30, "SANKAR VIHAR" : 30, "VASANT VIHAR" : 32, "MUNIRKA" : 32, "R.K.PURAM" : 34, "IIT" : 36, "HAUZ KHAS" : 38, "PANCHSHEEL PARK" : 39, "CHIRAG DELHI" : 38, "GREATER KAILASH" : 40, "NEHRU ENCLAVE" : 40, "KALKAJI MANDIR" : 42, "OKHLA NSIC" : 42, "SUKHDEV VIHAR" : 44, "JAMIA MILLAI ISLAMIA" : 44, "OKHLA VIAHR" : 46, "JASOLA VIHAR SHAHEEN BAGH" : 47, "KALINDI KUNJ" : 48, "OKHLA BIRD SANTUARY" : 48, "BOTANICAL GARDEN" : 50},
+
+"DASHRATPURI" : {"PALAM" : 10, "SADAR BAZAR CANTONMENT" : 20, "TERMINAL 1-IGI AIRPORT" : 20, "SANKAR VIHAR" : 20, "VASANT VIHAR" : 30, "MUNIRKA" : 30, "R.K.PURAM" : 32, "IIT" : 34, "HAUZ KHAS" : 36, "PANCHSHEEL PARK" : 38, "CHIRAG DELHI" : 38, "GREATER KAILASH" : 38, "NEHRU ENCLAVE" : 38, "KALKAJI MANDIR" : 40, "OKHLA NSIC" : 40, "SUKHDEV VIHAR" : 40, "JAMIA MILLAI ISLAMIA" : 44, "OKHLA VIAHR" : 46, "JASOLA VIHAR SHAHEEN BAGH" : 47, "KALINDI KUNJ" : 48, "OKHLA BIRD SANTUARY" : 48, "BOTANICAL GARDEN" : 50},
+
+"PALAM" : {"SADAR BAZAR CANTONMENT" : 10, "TERMINAL 1-IGI AIRPORT" : 10, "SANKAR VIHAR" : 20, "VASANT VIHAR" : 20, "MUNIRKA" : 30, "R.K.PURAM" : 30, "IIT" : 34, "HAUZ KHAS" : 36, "PANCHSHEEL PARK" : 38, "CHIRAG DELHI" : 38, "GREATER KAILASH" : 38, "NEHRU ENCLAVE" : 38, "KALKAJI MANDIR" : 40, "OKHLA NSIC" : 40, "SUKHDEV VIHAR" : 40, "JAMIA MILLAI ISLAMIA" : 44, "OKHLA VIAHR" : 46, "JASOLA VIHAR SHAHEEN BAGH" : 47, "KALINDI KUNJ" : 48, "OKHLA BIRD SANTUARY" : 48, "BOTANICAL GARDEN" : 50},
+
+"SADAR BAZAR CANTONMENT" : {"TERMINAL 1-IGI AIRPORT" : 10, "SANKAR VIHAR" : 10, "VASANT VIHAR" : 20, "MUNIRKA" : 20, "R.K.PURAM" : 30, "IIT" : 30, "HAUZ KHAS" : 32, "PANCHSHEEL PARK" : 32, "CHIRAG DELHI" : 34, "GREATER KAILASH" : 34, "NEHRU ENCLAVE" : 36, "KALKAJI MANDIR" : 36, "OKHLA NSIC" : 38, "SUKHDEV VIHAR" : 38, "JAMIA MILLAI ISLAMIA" : 40, "OKHLA VIAHR" : 40, "JASOLA VIHAR SHAHEEN BAGH" : 42, "KALINDI KUNJ" : 42, "OKHLA BIRD SANTUARY" : 46, "BOTANICAL GARDEN" : 46},
+
+"TERMINAL 1-IGI AIRPORT" : {"SANKAR VIHAR" : 10, "VASANT VIHAR" : 10, "MUNIRKA" : 20, "R.K.PURAM" : 20, "IIT" : 30, "HAUZ KHAS" : 32, "PANCHSHEEL PARK" : 32, "CHIRAG DELHI" : 34, "GREATER KAILASH" : 34, "NEHRU ENCLAVE" : 36, "KALKAJI MANDIR" : 36, "OKHLA NSIC" : 38, "SUKHDEV VIHAR" : 38, "JAMIA MILLAI ISLAMIA" : 40, "OKHLA VIAHR" : 40, "JASOLA VIHAR SHAHEEN BAGH" : 42, "KALINDI KUNJ" : 42, "OKHLA BIRD SANTUARY" : 46, "BOTANICAL GARDEN" : 46},
+
+"SANKAR VIHAR" : {"VASANT VIHAR" : 10, "MUNIRKA" : 10, "R.K.PURAM" : 20, "IIT" : 20, "HAUZ KHAS" : 30, "PANCHSHEEL PARK" : 30, "CHIRAG DELHI" : 32, "GREATER KAILASH" : 32, "NEHRU ENCLAVE" : 34, "KALKAJI MANDIR" : 34, "OKHLA NSIC" : 36, "SUKHDEV VIHAR" : 36, "JAMIA MILLAI ISLAMIA" : 38, "OKHLA VIAHR" : 38, "JASOLA VIHAR SHAHEEN BAGH" : 40, "KALINDI KUNJ" : 40, "OKHLA BIRD SANTUARY" : 42, "BOTANICAL GARDEN" : 42},
+
+"VASANT VIHAR" : {"MUNIRKA" : 10, "R.K.PURAM" : 10, "IIT" : 20, "HAUZ KHAS" : 18, "PANCHSHEEL PARK" : 25, "CHIRAG DELHI" : 28, "GREATER KAILASH" : 30, "NEHRU ENCLAVE" : 30, "KALKAJI MANDIR" : 32, "OKHLA NSIC" : 32, "SUKHDEV VIHAR" : 34, "JAMIA MILLAI ISLAMIA" : 34, "OKHLA VIAHR" : 38, "JASOLA VIHAR SHAHEEN BAGH" : 38, "KALINDI KUNJ" : 40, "OKHLA BIRD SANTUARY" : 40, "BOTANICAL GARDEN" : 40},
+
+"MUNIRKA" : {"R.K.PURAM" : 8, "IIT" : 10, "HAUZ KHAS" : 15, "PANCHSHEEL PARK" : 18, "CHIRAG DELHI" : 22, "GREATER KAILASH" : 28, "NEHRU ENCLAVE" : 30, "KALKAJI MANDIR" : 30, "OKHLA NSIC" : 32, "SUKHDEV VIHAR" : 32, "JAMIA MILLAI ISLAMIA" : 35, "OKHLA VIAHR" : 35, "JASOLA VIHAR SHAHEEN BAGH" : 36, "KALINDI KUNJ" : 38, "OKHLA BIRD SANTUARY" : 40, "BOTANICAL GARDEN" : 40},
+
+"R.K.PURAM" : {"IIT" : 5, "HAUZ KHAS" : 10, "PANCHSHEEL PARK" : 15, "CHIRAG DELHI" : 18, "GREATER KAILASH" : 22, "NEHRU ENCLAVE" : 25, "KALKAJI MANDIR" : 28, "OKHLA NSIC" : 30, "SUKHDEV VIHAR" : 30, "JAMIA MILLAI ISLAMIA" : 32, "OKHLA VIAHR" : 32, "JASOLA VIHAR SHAHEEN BAGH" : 34, "KALINDI KUNJ" : 34, "OKHLA BIRD SANTUARY" : 36, "BOTANICAL GARDEN" : 36},
+
+"IIT" : { "HAUZ KHAS" : 5, "PANCHSHEEL PARK" : 10, "CHIRAG DELHI" : 15, "GREATER KAILASH" : 19, "NEHRU ENCLAVE" : 22, "KALKAJI MANDIR" : 25, "OKHLA NSIC" : 28, "SUKHDEV VIHAR" : 28, "JAMIA MILLAI ISLAMIA" : 30, "OKHLA VIAHR" : 30, "JASOLA VIHAR SHAHEEN BAGH" : 32, "KALINDI KUNJ" : 32, "OKHLA BIRD SANTUARY" : 34, "BOTANICAL GARDEN" : 34},
+
+"HAUZ KHAS" : { "PANCHSHEEL PARK" : 8, "CHIRAG DELHI" : 12, "GREATER KAILASH" : 15, "NEHRU ENCLAVE" : 20, "KALKAJI MANDIR" : 22, "OKHLA NSIC" : 25, "SUKHDEV VIHAR" : 28, "JAMIA MILLAI ISLAMIA" : 30, "OKHLA VIAHR" : 30, "JASOLA VIHAR SHAHEEN BAGH" : 32, "KALINDI KUNJ" : 32, "OKHLA BIRD SANTUARY" : 34, "BOTANICAL GARDEN" : 34},
+
+"PANCHSHEEL PARK" : {"CHIRAG DELHI" : 10, "GREATER KAILASH" : 12, "NEHRU ENCLAVE" : 18, "KALKAJI MANDIR" : 20, "OKHLA NSIC" : 20, "SUKHDEV VIHAR" : 25, "JAMIA MILLAI ISLAMIA" : 25, "OKHLA VIAHR" : 28, "JASOLA VIHAR SHAHEEN BAGH" : 30, "KALINDI KUNJ" : 30, "OKHLA BIRD SANTUARY" : 32, "BOTANICAL GARDEN" : 32},
+
+"CHIRAG DELHI" : {"GREATER KAILASH" : 10, "NEHRU ENCLAVE" : 12, "KALKAJI MANDIR" : 15, "OKHLA NSIC" : 18, "SUKHDEV VIHAR" : 20, "JAMIA MILLAI ISLAMIA" : 20, "OKHLA VIAHR" : 25, "JASOLA VIHAR SHAHEEN BAGH" : 28, "KALINDI KUNJ" : 28, "OKHLA BIRD SANTUARY" : 30, "BOTANICAL GARDEN" : 30},
+
+"GREATER KAILASH" : {"NEHRU ENCLAVE" : 8, "KALKAJI MANDIR" : 12, "OKHLA NSIC" : 15, "SUKHDEV VIHAR" : 18, "JAMIA MILLAI ISLAMIA" : 20, "OKHLA VIAHR" : 20, "JASOLA VIHAR SHAHEEN BAGH" : 25, "KALINDI KUNJ" : 25, "OKHLA BIRD SANTUARY" : 28, "BOTANICAL GARDEN" : 28},
+
+"NEHRU ENCLAVE" : {"KALKAJI MANDIR" : 10, "OKHLA NSIC" : 12, "SUKHDEV VIHAR" : 15, "JAMIA MILLAI ISLAMIA" : 18, "OKHLA VIAHR" : 20, "JASOLA VIHAR SHAHEEN BAGH" : 20, "KALINDI KUNJ" : 22, "OKHLA BIRD SANTUARY" : 22, "BOTANICAL GARDEN" : 25},
+
+"KALKAJI MANDIR" : {"OKHLA NSIC" : 10, "SUKHDEV VIHAR" : 12, "JAMIA MILLAI ISLAMIA" : 15, "OKHLA VIAHR" : 18, "JASOLA VIHAR SHAHEEN BAGH" : 18, "KALINDI KUNJ" : 20, "OKHLA BIRD SANTUARY" : 20, "BOTANICAL GARDEN" : 22},
+
+"OKHLA NSIC" : {"SUKHDEV VIHAR" : 10, "JAMIA MILLAI ISLAMIA" : 12, "OKHLA VIAHR" : 15, "JASOLA VIHAR SHAHEEN BAGH" : 15, "KALINDI KUNJ" : 18, "OKHLA BIRD SANTUARY" : 20, "BOTANICAL GARDEN" : 20},
+
+"SUKHDEV VIHAR" : {"JAMIA MILLAI ISLAMIA" : 10, "OKHLA VIAHR" : 12, "JASOLA VIHAR SHAHEEN BAGH" : 14, "KALINDI KUNJ" : 16, "OKHLA BIRD SANTUARY" : 18, "BOTANICAL GARDEN" : 20},
+
+"JAMIA MILLAI ISLAMIA" : { "OKHLA VIAHR" : 10, "JASOLA VIHAR SHAHEEN BAGH" : 12, "KALINDI KUNJ" : 14, "OKHLA BIRD SANTUARY" : 16, "BOTANICAL GARDEN" : 18},
+
+"OKHLA VIAHR" : { "JASOLA VIHAR SHAHEEN BAGH" : 10, "KALINDI KUNJ" : 12, "OKHLA BIRD SANTUARY" : 15, "BOTANICAL GARDEN" : 18},
+
+"JASOLA VIHAR SHAHEEN BAGH" : {"KALINDI KUNJ" : 10, "OKHLA BIRD SANTUARY" : 12, "BOTANICAL GARDEN" : 15},
+
+"KALINDI KUNJ" : {"OKHLA BIRD SANTUARY" : 10, "BOTANICAL GARDEN" : 15},
+
+"OKHLA BIRD SANTUARY" : {"BOTANICAL GARDEN" : 10},
+
+"BOTANICAL GARDEN" : ""
+
+};
+
+function updateDestinations(){
+      const sourceSelect = document.getElementById('source');
+      const destinationSelect = document.getElementById('destination');
+      const selectSource = sourceSelect.options[sourceSelect.selectedIndex].text;
+
+      //clear current options
+      destinationSelect.innerHTML = '<option value="">DESTINATION ON THIS ROUTE</option>';
+
+      if(destinations[selectSource]){
+        for(const [destination, price] of Object.entries(destinations[selectSource])){
+          const option = document.createElement('option');
+          option.value = price;
+          option.text = destination;
+          destinationSelect.add(option);
+        }
+      }
+     }
+
+
+        
+    function calculatePrice(){
+      const age = parseInt(document.getElementById('age').value, 10);
+      const sourcePrice = parseInt(document.getElementById('source').value, 10);
+      const destinationPrice = parseInt(document.getElementById('destination').value, 10);
+
+      let finalDiscount;
+
+      if(!age){
+        document.getElementById('message').innerText = `Please enter your age Ma'am.`;
+        return;
+      }
+
+      if(!sourcePrice || !destinationPrice){
+        document.getElementById('message').innerText = `MA'AM PLEASE SELECT BOTH SOURCE AND DESTINATION.`;
+        return;
+      }
+
+      const totalPrice = destinationPrice
+
+      if(age <= 5){
+        finalDiscount = 100;
+      }
+      else if(age <= 12){
+        finalDiscount = 50;
+      }
+      else if(age >=65){
+        finalDiscount = 70;
+      }
+      else{
+        finalDiscount = 0;
+      }
+      
+      // calculate final price after discount
+      const discountAmount = (finalDiscount / 100) * totalPrice;
+      const finalPrice = totalPrice - discountAmount;
+
+      //Dispaly the final discount
+      document.getElementById('message').innerText = 
+      `Your age is: ${age}.
+      Total Price : ₹${totalPrice}.
+      MA'AM YOUR FINAL PRICE AFTER DISCOUNT : ₹${finalPrice.toFixed(2)}.
+      HAPPY JOURNEY 😊`;
+    }
+  </script>
+</body>
+</html>
