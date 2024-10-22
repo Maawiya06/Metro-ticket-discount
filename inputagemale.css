@@ -1,0 +1,49 @@
+.route{
+  padding: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  font-style: italic;
+
+}
+
+.left-section{
+  text-align: left;
+  float: left;
+  width: 50%;
+}
+
+.right-section{
+  text-align: right;
+  float: right;
+  width: 50%;
+}
+
+select{
+  width: 80%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+}
+
+.bottom-center{
+  clear: both;
+  text-align: center;
+  margin-top: 40px;
+}
+
+button{
+  padding: 12px 20px;
+  border: 2px solid;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #1F4B2C;
+  color: white;
+  font-size: 16px;
+  color: whitesmoke;
+  transition: background-color o.3s ease;
+}
+
+bbutton:hover{
+  background-color: #0056b3;
+}
